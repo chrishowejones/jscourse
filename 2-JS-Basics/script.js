@@ -184,7 +184,7 @@ if (player1Score > player2Score && player1Score > player3Score) {
 
 ////////////////////////////////////////
 // Lecture: Functions
-
+/*
 function calculateAge(yearOfBirth) {
     var age = 2018 - yearOfBirth;
     return age;
@@ -211,3 +211,26 @@ function yearsUntilRetirement(name, year) {
 yearsUntilRetirement("John", 1990);
 yearsUntilRetirement("Mike", 1969);
 yearsUntilRetirement("Mary", 1948);
+*/
+
+////////////////////////////////////////
+// Lecture: Statements and expressions
+
+// function statement
+function someFun(par) {
+    // code
+}
+
+// function expression
+var someFun = function(par) {
+    // code
+}
+
+// expressions
+3 + 4;
+var x = 3;
+
+// statements
+if (x == 5) {
+    // do something
+}
