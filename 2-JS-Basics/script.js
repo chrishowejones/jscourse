@@ -105,7 +105,7 @@
 
 ////////////////////////////////////////
 // Lecture: boolean logic and switch
-
+/*
 var age = 20;
 
 if (age < 20) {
@@ -133,3 +133,81 @@ case "cop":
 default:
     console.log("John does something else.");
 }
+*/
+
+////////////////////////////////////////
+// Coding challenge: 1
+
+/*
+var player1 = "John";
+var player2 = "Mark";
+var player3 = "Fred";
+
+var player1Age = 31;
+var player2Age = 31;
+var player3Age = 30;
+
+var player1Height = 122;
+var player2Height = 182;
+var player3Height = 182;
+
+var player1Score = player1Height + player1Age * 5;
+var player2Score = player2Height + player2Age * 5;
+var player3Score = player3Height + player3Age * 5;
+
+if (player1Score > player2Score && player1Score > player3Score) {
+    console.log(player1 + " wins with a score of: " + player1Score +
+                " to " + player2 + "'s score of: " + player2Score +
+                " and " + player3 + "'s score of: " + player3Score + ".");
+} else if (player1Score < player2Score && player2Score > player3Score) {
+    console.log(player2 + " wins with a score of: " + player2Score +
+                " to " + player1 + "'s score of: " + player1Score +
+                " and " + player3 + "'s score of: " + player3Score +".");
+} else if (player3Score > player2Score && player3Score > player1Score) {
+    console.log(player3 + " wins with a score of: " + player3Score +
+                " to " + player1 + "'s score of: " + player1Score +
+                " and " + player2 + "'s score of: " + player2Score +".");
+} else if (player3Score === player2Score && player3Score > player1Score) {
+    console.log(player3 + " draws with "+ player2 + " with a score of: " + player3Score +
+                " to " + player1 + "'s score of: " + player1Score + ".");
+} else if (player2Score === player1Score && player1Score > player3Score) {
+    console.log(player1 + " draws with "+ player2 + " with a score of: " + player1Score +
+                " to " + player3 + "'s score of: " + player3Score + ".");
+} else if (player1Score === player3Score && player1Score > player2Score) {
+    console.log(player1 + " draws with "+ player3 + " with a score of: " + player1Score +
+                " to " + player2 + "'s score of: " + player2Score + ".");
+} else {
+    console.log("Game is a draw. All players have a score of: " + player1Score);
+}
+*/
+
+
+////////////////////////////////////////
+// Lecture: Functions
+
+function calculateAge(yearOfBirth) {
+    var age = 2018 - yearOfBirth;
+    return age;
+}
+
+var ageJohn = calculateAge(1990);
+var ageMike = calculateAge(1969);
+var ageMary = calculateAge(1948);
+console.log("John's age: " + ageJohn);
+console.log("Mike's age: " + ageMike);
+console.log("Mary's age: " + ageMary);
+
+function yearsUntilRetirement(name, year) {
+    var age = calculateAge(year);
+    var retirement = 65 - age;
+    if (retirement >= 0) {
+        console.log(name + " retires in " + retirement + " years.");
+    } else {
+        console.log(name + " is already retired.");
+    }
+
+}
+
+yearsUntilRetirement("John", 1990);
+yearsUntilRetirement("Mike", 1969);
+yearsUntilRetirement("Mary", 1948);
