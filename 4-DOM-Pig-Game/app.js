@@ -21,6 +21,12 @@ init();
 document.querySelector(".btn-roll").addEventListener("click", function() {
     if (gamePlaying) {
 
+        if (document.getElementById("winningScore").disabled == false) {
+            // prevent change of winning score during play
+            document.getElementById("winningScore").disabled = true;
+            winningScore = document.getElementById("winningScore").value;
+        }
+
         // 1. Random number
         var dice = Math.floor(6 * Math.random()) + 1;
         var dice2 = Math.floor(6 * Math.random()) + 1;
@@ -75,6 +81,8 @@ document.querySelector(".btn-hold").addEventListener("click", function() {
             document.querySelector(".player-" + activePlayer + "-panel").classList.add("winner");
             document.querySelector(".player-" + activePlayer + "-panel").classList.remove("active");
             gamePlaying = false;
+            // enable changing winning score
+            document.getElementById("winningScore").disabled = false;
         } else {
             nextPlayer();
         }
@@ -105,7 +113,6 @@ function init() {
     roundScore = 0;
     activePlayer = 0;
     gamePlaying = true;
-    winningScore = document.getElementById("winningScore").value;
 
     document.querySelector(".dice").style.display = "none";
     document.querySelector(".dice2").style.display = "none";
