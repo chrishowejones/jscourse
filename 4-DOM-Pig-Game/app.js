@@ -27,10 +27,10 @@ document.querySelector(".btn-roll").addEventListener("click", function() {
         var dice2 = Math.floor(6 * Math.random()) + 1;
 
         // 2. Display result.
-        var diceDOM = document.querySelector(".dice");
+        var diceDOM = document.getElementById("dice-1");
         diceDOM.style.display  = "block";
         diceDOM.src = "dice-" + dice + ".png";
-        var diceDOM2 = document.querySelector(".dice2");
+        var diceDOM2 = document.getElementById("dice-2");
         diceDOM2.style.display  = "block";
         diceDOM2.src = "dice-" + dice2 + ".png";
 
@@ -81,8 +81,8 @@ document.querySelector(".btn-hold").addEventListener("click", function() {
         if (scores[activePlayer] >= winningScore) {
             // active player won
             document.getElementById("name-" + activePlayer).textContent = "Winner!";
-            document.querySelector(".dice").style.display = "none";
-            document.querySelector(".dice2").style.display = "none";
+            document.getElementById("dice-1").style.display = "none";
+            document.getElementById("dice-2").style.display = "none";
             document.querySelector(".player-" + activePlayer + "-panel").classList.add("winner");
             document.querySelector(".player-" + activePlayer + "-panel").classList.remove("active");
             gamePlaying = false;
@@ -105,8 +105,8 @@ function nextPlayer() {
     document.querySelector(".player-0-panel").classList.toggle("active");
     document.querySelector(".player-1-panel").classList.toggle("active");
 
-    document.querySelector(".dice").style.display = "none";
-    document.querySelector(".dice2").style.display = "none";
+    document.getElementById("dice-1").style.display = "none";
+    document.getElementById("dice-2").style.display = "none";
 };
 
 document.querySelector(".btn-new").addEventListener("click", init);
@@ -117,8 +117,8 @@ function init() {
     activePlayer = 0;
     gamePlaying = true;
 
-    document.querySelector(".dice").style.display = "none";
-    document.querySelector(".dice2").style.display = "none";
+    document.getElementById("dice-1").style.display = "none";
+    document.getElementById("dice-2").style.display = "none";
 
     document.getElementById("score-0").textContent = "0";
     document.getElementById("score-1").textContent = "0";
