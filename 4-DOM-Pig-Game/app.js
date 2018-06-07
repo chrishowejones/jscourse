@@ -21,11 +21,6 @@ init();
 document.querySelector(".btn-roll").addEventListener("click", function() {
     if (gamePlaying) {
 
-        if (document.getElementById("winningScore").disabled == false) {
-            // prevent change of winning score during play
-            document.getElementById("winningScore").disabled = true;
-            winningScore = document.getElementById("winningScore").value;
-        }
 
         // 1. Random number
         var dice = Math.floor(6 * Math.random()) + 1;
@@ -72,6 +67,16 @@ document.querySelector(".btn-hold").addEventListener("click", function() {
         // Update UI
         document.getElementById("score-" + activePlayer).textContent = scores[activePlayer];
 
+        var input = document.querySelector(".final-score").value;
+
+        var winningScore;
+        // check if input not empty: undefined, null and empty string coerced to false
+        if (input) {
+            winningScore = input;
+        } else {
+            winningScore = 100;
+        }
+
         // Check if current player won the game
         if (scores[activePlayer] >= winningScore) {
             // active player won
@@ -81,8 +86,6 @@ document.querySelector(".btn-hold").addEventListener("click", function() {
             document.querySelector(".player-" + activePlayer + "-panel").classList.add("winner");
             document.querySelector(".player-" + activePlayer + "-panel").classList.remove("active");
             gamePlaying = false;
-            // enable changing winning score
-            document.getElementById("winningScore").disabled = false;
         } else {
             nextPlayer();
         }
