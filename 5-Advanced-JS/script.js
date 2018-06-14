@@ -128,30 +128,86 @@
 ////////////////////////////////////////
 // Lecture: Functions returning functions
 
-function interviewQuestion(job) {
-    if (job === "designer") {
-        return function(name) {
-            console.log(name + ", can you please explain what UX design is?");
-        };
-    } else if (job === "teacher") {
-        return function(name) {
-            console.log("What subject do you teach, " + name + "?");
-        };
-    } else {
-        return function(name) {
-            console.job("Hello, " + name + " what do you do?");
-        };
+// function interviewQuestion(job) {
+//     if (job === "designer") {
+//         return function(name) {
+//             console.log(name + ", can you please explain what UX design is?");
+//         };
+//     } else if (job === "teacher") {
+//         return function(name) {
+//             console.log("What subject do you teach, " + name + "?");
+//         };
+//     } else {
+//         return function(name) {
+//             console.job("Hello, " + name + " what do you do?");
+//         };
+//     }
+// }
+
+// var teacherQuestion = interviewQuestion("teacher");
+// var designerQuestion = interviewQuestion("designer");
+
+// teacherQuestion("John");
+
+// designerQuestion("John");
+// designerQuestion("Jane");
+// designerQuestion("Mark");
+// designerQuestion("Mike");
+
+// interviewQuestion("teacher")("Mark");
+
+////////////////////////////////////////////////////////////
+// Lecture: IIFE - Immediately invoked Function Expressions
+
+// function game() {
+//     var score = Math.random() * 10;
+//     console.log(score >= 5);
+// }
+
+// game();
+
+// (function() {
+//     var score = Math.random() * 10;
+//     console.log(score >= 5);
+// })();
+
+
+// (function(goodLuck) {
+//     var score = Math.random() * 10;
+//     console.log(score >= 5 - goodLuck);
+// })(3);
+
+//////////////////////////////////////////////////
+// Lecture: Closures
+
+function retirement(retirementAge) {
+    var a = " years left to retirement";
+    return function(yearOfBirth) {
+        var age = 2018 - yearOfBirth;
+        console.log((retirementAge - age) + a);
     }
 }
 
-var teacherQuestion = interviewQuestion("teacher");
-var designerQuestion = interviewQuestion("designer");
+var retirementUS = retirement(66);
+var retirementGermany = retirement(65);
+var retirementIceland = retirement(67);
 
-teacherQuestion("John");
+retirementGermany(1990);
+retirementUS(1990);
+retirementIceland(1990);
 
-designerQuestion("John");
-designerQuestion("Jane");
-designerQuestion("Mark");
-designerQuestion("Mike");
+//retirement(66)(1990);
 
-interviewQuestion("teacher")("Mark");
+function interviewQuestion(job) {
+    return function(name) {
+        if (job === "designer") {
+            return console.log(name + ", can you please explain what UX design is?");
+        } else if (job === "teacher") {
+            return console.log("What subject do you teach, " + name + "?");
+        } else {
+            return console.job("Hello, " + name + " what do you do?");
+        }
+    };
+}
+
+interviewQuestion("teacher")("John");
