@@ -180,34 +180,103 @@
 //////////////////////////////////////////////////
 // Lecture: Closures
 
-function retirement(retirementAge) {
-    var a = " years left to retirement";
-    return function(yearOfBirth) {
-        var age = 2018 - yearOfBirth;
-        console.log((retirementAge - age) + a);
+// function retirement(retirementAge) {
+//     var a = " years left to retirement";
+//     return function(yearOfBirth) {
+//         var age = 2018 - yearOfBirth;
+//         console.log((retirementAge - age) + a);
+//     }
+// }
+
+// var retirementUS = retirement(66);
+// var retirementGermany = retirement(65);
+// var retirementIceland = retirement(67);
+
+// retirementGermany(1990);
+// retirementUS(1990);
+// retirementIceland(1990);
+
+// //retirement(66)(1990);
+
+// function interviewQuestion(job) {
+//     return function(name) {
+//         if (job === "designer") {
+//             return console.log(name + ", can you please explain what UX design is?");
+//         } else if (job === "teacher") {
+//             return console.log("What subject do you teach, " + name + "?");
+//         } else {
+//             return console.job("Hello, " + name + " what do you do?");
+//         }
+//     };
+// }
+
+// interviewQuestion("teacher")("John");
+
+// interviewQuestion("designer")("Jane");
+
+//////////////////////////////////////////////////
+// Lecture: Bind, call and apply
+
+var john = {
+    name: "John",
+    age: 26,
+    job: "teacher",
+    presentation: function(style, timeOfDay) {
+        if (style === "formal") {
+            console.log("Good " + timeOfDay + ", ladies and gentlemen. I'm "
+                        + this.name + ", I'm a " + this.job
+                       + " and I'm " + this.age + " years old.");
+        } else if (style === "friendly") {
+            console.log("Hey, what's up. I'm "
+                       + this.name + ", I'm a " + this.job
+                        + " and I'm " + this.age + " years old."
+                       + " Have a nice " + timeOfDay + ".");
+        }
     }
 }
 
-var retirementUS = retirement(66);
-var retirementGermany = retirement(65);
-var retirementIceland = retirement(67);
-
-retirementGermany(1990);
-retirementUS(1990);
-retirementIceland(1990);
-
-//retirement(66)(1990);
-
-function interviewQuestion(job) {
-    return function(name) {
-        if (job === "designer") {
-            return console.log(name + ", can you please explain what UX design is?");
-        } else if (job === "teacher") {
-            return console.log("What subject do you teach, " + name + "?");
-        } else {
-            return console.job("Hello, " + name + " what do you do?");
-        }
-    };
+var emily = {
+    name: "Emily",
+    age: 35,
+    job: "designer"
 }
 
-interviewQuestion("teacher")("John");
+john.presentation("formal", "morning");
+
+john.presentation.call(emily, "friendly", "afternoon");
+
+// apply takes 'self' and an array of arguments
+// john.presentation.apply(emily, ["friendl", "afternoon"]);
+
+var johnFriendly = john.presentation.bind(john, "friendly");
+
+johnFriendly("evening");
+johnFriendly("night");
+
+var emilyFormal = john.presentation.bind(emily, "formal");
+
+emilyFormal("morning");
+
+var years = [1990, 1965, 1937, 2005, 2000];
+
+function arrayCalc(arr, fn) {
+    var arrRes = [];
+    for (var i = 0; i < arr.length; i++) {
+        arrRes.push(fn(arr[i]));
+    }
+    return arrRes;
+}
+
+function calculateAge(el) {
+    return 2018 - el;
+}
+
+function isFullAge(limit, el) {
+    return el >= limit;
+}
+
+var ages = arrayCalc(years, calculateAge);
+
+var fullJapan = arrayCalc(ages, isFullAge.bind(this, 20));
+console.log(ages);
+console.log(fullJapan);
